@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║                        Gdwa — جدوى                          ║
+  ║           Strategic Weekly Planner · Covey Method           ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  Copyright © 2026  Kaream Mohamed Sultan                    ║
+  ║  All rights reserved under GNU Affero General Public License v3.0  ║
+  ║                                                              ║
+  ║  This program is free software: you can redistribute it      ║
+  ║  and/or modify it under the terms of the GNU Affero          ║
+  ║  General Public License as published by the Free Software    ║
+  ║  Foundation, either version 3 of the License, or            ║
+  ║  (at your option) any later version.                         ║
+  ║                                                              ║
+  ║  This program is distributed in the hope that it will be     ║
+  ║  useful, but WITHOUT ANY WARRANTY; without even the implied  ║
+  ║  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR     ║
+  ║  PURPOSE. See the GNU AGPLv3 for more details.              ║
+  ║                                                              ║
+  ║  https://www.gnu.org/licenses/agpl-3.0.html                 ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gdwa">
+<meta name="application-name" content="Gdwa">
+<meta name="description" content="Strategic Weekly Planner · Covey Method · جدول أسبوعي استراتيجي">
+<link rel="manifest" href="manifest.json">
+<!-- Apple touch icon (inline SVG as base64) -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230c0c0e'/%3E%3Ctext x='256' y='340' text-anchor='middle' font-size='280' font-family='Georgia,serif' fill='%23c9a96e'%3EG%3C/text%3E%3C/svg%3E">
+<title>Gdwa — جدوى</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --surface: #141416;
+  --surface2: #1c1c20;
+  --surface3: #242428;
+  --border: #2a2a30;
+  --border2: #38383f;
+  --text: #f0ede8;
+  --text2: #9f9c97;
+  --text3: #5a5755;
+  --accent: #c9a96e;
+  --accent2: #8b6d3f;
+  --q1: #e05555; /* urgent + important */
+  --q2: #4e9eff; /* not urgent + important ★ priority */
+  --q3: #f5a623; /* urgent + not important */
+  --q4: #6b7280; /* not urgent + not important */
+  --q1-bg: rgba(224,85,85,0.1);
+  --q2-bg: rgba(78,158,255,0.1);
+  --q3-bg: rgba(245,166,35,0.1);
+  --q4-bg: rgba(107,114,128,0.08);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+[data-theme="light"] {
+  --bg: #f5f2ee;
+  --surface: #fffdf9;
+  --surface2: #f0ede8;
+  --surface3: #e8e4de;
+  --border: #ddd9d2;
+  --border2: #c8c3bb;
+  --text: #1a1814;
+  --text2: #6b6560;
+  --text3: #a09890;
+  --q1-bg: rgba(224,85,85,0.08);
+  --q2-bg: rgba(78,158,255,0.08);
+  --q3-bg: rgba(245,166,35,0.08);
+  --q4-bg: rgba(107,114,128,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Tajawal', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ═══════════════════════════════ HEADER ═══════════════════════════════ */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 56px;
+  background: rgba(12,12,14,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  transition: background 0.3s;
+}
+[data-theme="light"] header { background: rgba(245,242,238,0.9); }
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--text2); font-size: 13px; font-family: 'Tajawal', sans-serif; font-weight: 300; margin-right: 8px; }
+
+.header-nav {
+  display: flex; gap: 4px; align-items: center;
+}
+.nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--text2); padding: 8px 14px; border-radius: var(--radius-sm);
+  font-family: 'Tajawal', sans-serif; font-size: 13px; font-weight: 500;
+  transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.nav-btn:hover { background: var(--surface2); color: var(--text); }
+.nav-btn.active { background: var(--surface2); color: var(--accent); }
+.nav-btn svg { width: 15px; height: 15px; }
+
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.icon-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text2); transition: all 0.2s;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+.icon-btn svg { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════ PAGES ═══════════════════════════════ */
+.page { display: none; padding-top: 56px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════ WEEKLY GRID ═══════════════════════════════ */
+.week-header {
+  padding: 16px 20px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.week-label {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 300;
+  color: var(--text2);
+}
+.week-label strong { color: var(--text); font-weight: 600; }
+.week-nav { display: flex; gap: 6px; align-items: center; }
+.week-nav-btn {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); width: 30px; height: 30px;
+  border-radius: var(--radius-sm); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+}
+.week-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.grid-wrapper { overflow-x: auto; padding: 0 0 20px; }
+.weekly-grid {
+  display: grid;
+  grid-template-columns: 70px repeat(7, 1fr);
+  min-width: 900px;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  margin: 0 20px;
+}
+
+/* Day column header */
+.day-col-header {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px;
+  background: var(--surface);
+  position: sticky; top: 56px; z-index: 10;
+}
+.day-col-header.time-col { 
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.day-name-ar { font-size: 13px; font-weight: 700; color: var(--text); }
+.day-name-en { font-size: 10px; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
+.day-date { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.day-col-header.today { border-bottom: 2px solid var(--accent); }
+.day-col-header.today .day-name-ar { color: var(--accent); }
+
+/* Priority slots (top 5 cells per day) */
+.priority-zone {
+  border-right: 1px solid var(--border);
+  border-bottom: 2px solid var(--accent2);
+  padding: 0;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+}
+.priority-zone.time-label {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg); border-right: 1px solid var(--border);
+  border-bottom: 2px solid var(--accent2);
+  min-height: 270px;
+}
+.priority-label {
+  font-size: 9px; color: var(--accent2); text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700;
+}
+.priority-label-v {
+  font-size: 9px; color: var(--accent2);
+  writing-mode: vertical-rl; text-orientation: mixed;
+  transform: rotate(180deg); letter-spacing: 1px; font-weight: 700;
+}
+.priority-slot {
+  height: 54px; border-radius: 0; padding: 0 8px;
+  font-size: 11px; color: var(--text3); cursor: pointer;
+  transition: background 0.15s;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.priority-slot.filled {
+  border-right: 3px solid var(--q2);
+  background: var(--q2-bg); color: var(--text2);
+}
+.priority-slot.empty {
+  border-right: 3px solid var(--border);
+  background: var(--surface);
+}
+.priority-slot.empty:hover { background: var(--surface2); }
+.priority-slot.empty .slot-num {
+  font-size: 10px; color: var(--text3); font-family: 'JetBrains Mono', monospace;
+  opacity: 0.4; user-select: none;
+}
+
+/* Time rows */
+.time-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg); min-height: 54px;
+}
+.time-label-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--text3);
+  text-align: center; line-height: 1.3;
+}
+
+.task-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  height: 54px; position: relative;
+  cursor: pointer; transition: background 0.15s;
+  overflow: visible;
+}
+.task-cell:hover { background: var(--surface2); }
+.task-cell.drop-target { background: var(--surface3); }
+
+/* Task block inside cell */
+.task-block {
+  position: absolute;
+  top: 2px; left: 2px; right: 2px;
+  /* height set inline for spanning */
+  border-radius: 5px;
+  padding: 5px 7px; font-size: 10px; line-height: 1.35;
+  overflow: hidden; cursor: pointer;
+  transition: filter 0.15s, box-shadow 0.15s;
+  display: flex; flex-direction: column; gap: 2px;
+  border-right: 3px solid transparent;
+}
+.task-block:hover { filter: brightness(1.15); box-shadow: 0 3px 12px rgba(0,0,0,0.4); }
+.task-block .t-name { font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 11px; }
+.task-block .t-cat { font-size: 9px; opacity: 0.65; color: var(--text2); }
+.task-block .t-dur { font-size: 9px; font-family: 'JetBrains Mono',monospace; opacity: 0.5; margin-top: auto; }
+.task-block.q1 { background: var(--q1-bg); border-right-color: var(--q1); }
+.task-block.q2 { background: var(--q2-bg); border-right-color: var(--q2); }
+.task-block.q3 { background: var(--q3-bg); border-right-color: var(--q3); }
+.task-block.q4 { background: var(--q4-bg); border-right-color: var(--q4); }
+
+/* ═══════════════════════════════ ADD TASK MODAL ═══════════════════════════════ */
+.overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(520px, 94vw);
+  max-height: 90vh; overflow-y: auto;
+  padding: 28px;
+  transform: translateY(10px); transition: transform 0.25s;
+  box-shadow: var(--shadow);
+}
+.overlay.open .modal { transform: translateY(0); }
+
+.modal-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 600;
+  margin-bottom: 24px; color: var(--text);
+}
+.modal-title span { color: var(--accent); }
+
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block; font-size: 12px; font-weight: 700;
+  color: var(--text2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.form-input {
+  width: 100%; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); padding: 10px 14px;
+  font-family: 'Tajawal', sans-serif; font-size: 14px;
+  outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--accent); }
+.form-input::placeholder { color: var(--text3); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Importance slider */
+.slider-wrapper { padding: 4px 0; }
+.importance-slider {
+  width: 100%; -webkit-appearance: none;
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(to left, var(--q1) 0%, var(--q3) 40%, var(--q2) 70%, var(--q4) 100%);
+  outline: none; cursor: pointer;
+}
+.importance-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--text);
+  border: 2px solid var(--accent); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+.slider-labels { display: flex; justify-content: space-between; margin-top: 6px; }
+.slider-labels span { font-size: 9px; color: var(--text3); }
+
+/* Quadrant selector */
+.quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.quad-btn {
+  padding: 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--surface2);
+  cursor: pointer; text-align: center; transition: all 0.2s;
+  font-family: 'Tajawal', sans-serif;
+}
+.quad-btn:hover { border-color: var(--border2); }
+.quad-btn.selected { border-width: 2px; }
+.quad-btn.q1.selected { border-color: var(--q1); background: var(--q1-bg); }
+.quad-btn.q2.selected { border-color: var(--q2); background: var(--q2-bg); }
+.quad-btn.q3.selected { border-color: var(--q3); background: var(--q3-bg); }
+.quad-btn.q4.selected { border-color: var(--q4); background: var(--q4-bg); }
+.quad-btn .qb-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 5px; }
+.quad-btn.q1 .qb-dot { background: var(--q1); }
+.quad-btn.q2 .qb-dot { background: var(--q2); }
+.quad-btn.q3 .qb-dot { background: var(--q3); }
+.quad-btn.q4 .qb-dot { background: var(--q4); }
+.quad-btn .qb-name { font-size: 11px; color: var(--text2); font-weight: 600; }
+.quad-btn .qb-sub { font-size: 9px; color: var(--text3); margin-top: 2px; }
+
+/* Recurrence */
+.recur-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.day-chip {
+  padding: 5px 10px; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--surface2);
+  font-size: 11px; color: var(--text2); cursor: pointer;
+  transition: all 0.15s; font-family: 'Tajawal', sans-serif;
+}
+.day-chip.selected { border-color: var(--accent); background: rgba(201,169,110,0.15); color: var(--accent); }
+
+.modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.btn {
+  padding: 10px 22px; border-radius: var(--radius-sm);
+  border: none; cursor: pointer; font-family: 'Tajawal', sans-serif;
+  font-size: 14px; font-weight: 600; transition: all 0.2s;
+}
+.btn-ghost { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); border-color: var(--border2); }
+.btn-primary { background: var(--accent); color: #0c0c0e; }
+.btn-primary:hover { background: #d4b47a; }
+.btn-danger { background: rgba(224,85,85,0.15); color: var(--q1); border: 1px solid rgba(224,85,85,0.3); }
+.btn-danger:hover { background: rgba(224,85,85,0.25); }
+
+/* ═══════════════════════════════ QUADRANTS PAGE ═══════════════════════════════ */
+.page-inner { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
+.page-title {
+  font-family: 'Fraunces', serif;
+  font-size: 28px; font-weight: 300; color: var(--text2);
+  margin-bottom: 6px;
+}
+.page-title strong { color: var(--text); font-weight: 600; }
+.page-subtitle { font-size: 13px; color: var(--text3); margin-bottom: 28px; }
+
+.quadrant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.quadrant-panel {
+  padding: 20px; background: var(--surface); min-height: 280px;
+  transition: background 0.2s;
+}
+.quadrant-panel.q1-panel { border-right: 2px solid var(--q1); border-bottom: 2px solid var(--q1); }
+.quadrant-panel.q2-panel { border-left: 2px solid var(--q2); border-bottom: 2px solid var(--q2); }
+.quadrant-panel.q3-panel { border-right: 2px solid var(--q3); border-top: 2px solid var(--q3); }
+.quadrant-panel.q4-panel { border-left: 2px solid var(--q4); border-top: 2px solid var(--q4); }
+.q-panel-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.q-num { 
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+}
+.q1-panel .q-num { background: var(--q1-bg); color: var(--q1); }
+.q2-panel .q-num { background: var(--q2-bg); color: var(--q2); }
+.q3-panel .q-num { background: var(--q3-bg); color: var(--q3); }
+.q4-panel .q-num { background: var(--q4-bg); color: var(--q4); }
+.q-title { font-size: 14px; font-weight: 700; }
+.q-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.q-axis { font-size: 10px; color: var(--text3); text-align: center; font-style: italic; margin-bottom: 12px; letter-spacing: 0.3px; }
+
+.q-task-item {
+  padding: 8px 10px; border-radius: var(--radius-sm);
+  margin-bottom: 6px; font-size: 12px;
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  transition: background 0.15s;
+}
+.q-task-item:hover { background: var(--surface2); }
+.q-task-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.q-task-name { flex: 1; color: var(--text2); }
+.q-task-time { font-size: 10px; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
+
+/* ═══════════════════════════════ STATS PAGE ═══════════════════════════════ */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.stat-card.total::before { background: var(--accent); }
+.stat-card.q1-card::before { background: var(--q1); }
+.stat-card.q2-card::before { background: var(--q2); }
+.stat-card.completed::before { background: #4ec994; }
+.stat-value { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600; color: var(--text); }
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.chart-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+}
+.chart-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 16px; }
+
+/* Donut chart */
+.donut-wrap { display: flex; align-items: center; gap: 20px; }
+.donut-svg { flex-shrink: 0; }
+.donut-legend { flex: 1; }
+.donut-leg-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.donut-leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.donut-leg-name { font-size: 11px; color: var(--text2); flex: 1; }
+.donut-leg-pct { font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+/* Bar chart */
+.bar-chart { display: flex; flex-direction: column; gap: 10px; }
+.bar-item { }
+.bar-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.bar-name { font-size: 11px; color: var(--text2); }
+.bar-val { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text3); }
+.bar-track { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 1s cubic-bezier(.4,0,.2,1); }
+
+/* Ring chart */
+.ring-row { display: flex; justify-content: space-around; padding: 8px 4px; flex-wrap: wrap; gap: 12px; }
+.ring-item { text-align: center; flex: 0 0 auto; }
+.ring-svg { display: block; margin: 0 auto 6px; }
+.ring-name { font-size: 10px; color: var(--text3); }
+.ring-pct { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+/* ═══════════════════════════════ SETTINGS PANEL ═══════════════════════════════ */
+.settings-panel {
+  position: fixed; top: 56px; left: 20px; z-index: 150;
+  width: 280px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px;
+  transform: translateY(-10px) scale(0.97);
+  opacity: 0; pointer-events: none;
+  transition: all 0.2s; transform-origin: top left;
+}
+.settings-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+.settings-title { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.setting-row:last-child { border-bottom: none; }
+.setting-label { font-size: 13px; color: var(--text2); }
+
+.toggle {
+  width: 38px; height: 22px; background: var(--surface3);
+  border-radius: 11px; cursor: pointer; position: relative;
+  transition: background 0.2s; border: none; outline: none;
+}
+.toggle.on { background: var(--accent2); }
+.toggle::after {
+  content: ''; position: absolute;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--text3); top: 3px; left: 3px;
+  transition: transform 0.2s, background 0.2s;
+}
+.toggle.on::after { transform: translateX(16px); background: var(--accent); }
+
+/* ═══════════════════════════════ EXPORT BTN ═══════════════════════════════ */
+.export-row { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+.export-btn {
+  padding: 8px 16px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--surface2);
+  color: var(--text2); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Tajawal', sans-serif;
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+}
+.export-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ═══════════════════════════════ TASK LIST (Create Page) ═══════════════════════════════ */
+.task-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.task-list-item {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+  transition: all 0.15s;
+}
+.task-list-item:hover { border-color: var(--border2); }
+.task-list-item .tli-bar { width: 4px; height: 36px; border-radius: 2px; flex-shrink: 0; }
+.task-list-item.q1 .tli-bar { background: var(--q1); }
+.task-list-item.q2 .tli-bar { background: var(--q2); }
+.task-list-item.q3 .tli-bar { background: var(--q3); }
+.task-list-item.q4 .tli-bar { background: var(--q4); }
+.tli-body { flex: 1; min-width: 0; }
+.tli-name { font-size: 14px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tli-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.tli-actions { display: flex; gap: 6px; }
+.tli-action { 
+  background: none; border: none; cursor: pointer; 
+  color: var(--text3); padding: 4px; border-radius: 4px; transition: color 0.2s;
+}
+.tli-action:hover { color: var(--text2); }
+
+/* ═══════════════════════════════ EMPTY STATE ═══════════════════════════════ */
+.empty-state { text-align: center; padding: 40px; color: var(--text3); }
+.empty-state svg { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.3; }
+.empty-state p { font-size: 13px; }
+
+/* ═══════════════════════════════ PWA INSTALL ═══════════════════════════════ */
+.install-banner {
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 18px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: var(--shadow); z-index: 90;
+  font-size: 13px; color: var(--text2); display: none;
+}
+.install-banner.show { display: flex; }
+
+/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+@media (max-width: 768px) {
+  .charts-row { grid-template-columns: 1fr; }
+  .quadrant-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  header { padding: 0 12px; }
+  .nav-btn span { display: none; }
+  .logo span { display: none; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ═══════════════════════════════ COPYRIGHT FOOTER ═══════════════════════════════ */
+.copyright-footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 80;
+  height: 28px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  font-size: 10px; color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+.copyright-footer .cf-logo {
+  font-family: 'Fraunces', serif;
+  color: var(--accent2); font-size: 11px;
+}
+.copyright-footer .cf-sep { opacity: 0.3; }
+.copyright-footer .cf-license {
+  color: var(--text3);
+  border: 1px solid var(--border);
+  border-radius: 3px; padding: 1px 5px;
+  font-size: 9px; letter-spacing: 0.5px;
+  cursor: pointer; transition: all 0.2s;
+}
+.copyright-footer .cf-license:hover {
+  border-color: var(--accent2); color: var(--accent);
+}
+/* push page content above footer */
+.page { padding-bottom: 28px; }
+
+
+/* ═══════════════════════════════ NOTIFICATIONS ═══════════════════════════════ */
+.notif-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.notif-section-title { font-size: 10px; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.notif-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.notif-row:last-child { border-bottom: none; }
+.notif-label { font-size: 12px; color: var(--text2); }
+.notif-label small { display: block; font-size: 10px; color: var(--text3); margin-top: 1px; }
+
+/* toast notification */
+.toast-notif {
+  position: fixed; bottom: 48px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 18px; z-index: 300;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow); opacity: 0;
+  transition: all 0.3s; pointer-events: none; min-width: 260px;
+  font-size: 13px;
+}
+.toast-notif.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast-icon { font-size: 18px; flex-shrink: 0; }
+.toast-body { flex: 1; }
+.toast-title { font-weight: 700; color: var(--text); font-size: 13px; }
+.toast-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* per-task notif in modal */
+.notif-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.notif-chip {
+  padding: 5px 10px; border-radius: 20px; font-size: 11px;
+  border: 1px solid var(--border); background: var(--surface2);
+  color: var(--text2); cursor: pointer; transition: all 0.15s;
+  font-family: 'Tajawal', sans-serif; display: flex; align-items: center; gap: 4px;
+}
+.notif-chip.selected { border-color: var(--accent); background: rgba(201,169,110,0.15); color: var(--accent); }
+.notif-chip svg { width: 11px; height: 11px; }
+
+
+/* ═══════════════════════════════ CLOCK PICKER ═══════════════════════════════ */
+.clock-field { position: relative; }
+.clock-display {
+  width: 100%; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--accent); padding: 10px 14px;
+  font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700;
+  text-align: center; cursor: pointer; transition: border-color 0.2s;
+  user-select: none; letter-spacing: 1px;
+}
+.clock-display:hover { border-color: var(--accent); }
+.clock-popup {
+  position: absolute; top: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 16px;
+  z-index: 500; box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  width: 220px;
+}
+.clock-popup.hidden { display: none; }
+.clock-svg-wrap { display: flex; justify-content: center; margin-bottom: 10px; }
+.clock-svg { cursor: pointer; }
+.clock-face-bg { fill: var(--surface2); }
+.clock-center { fill: var(--accent); }
+.clock-hand { stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+.clock-tick { fill: var(--text3); font-size: 9px; text-anchor: middle; dominant-baseline: central; }
+.clock-tick.active-tick { fill: var(--accent); font-weight: 700; }
+.clock-num-dot { fill: var(--surface3); }
+.clock-num-dot.active-dot { fill: var(--accent); }
+.clock-popup-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 8px; border-top: 1px solid var(--border);
+}
+.clock-val-display {
+  font-family: 'JetBrains Mono', monospace; font-size: 22px;
+  font-weight: 700; color: var(--accent); text-align: center;
+  flex: 1;
+}
+.clock-ok {
+  background: var(--accent); color: #0c0c0e;
+  border: none; border-radius: 6px; padding: 6px 14px;
+  font-weight: 700; cursor: pointer; font-family: 'Tajawal', sans-serif;
+  font-size: 13px;
+}
+
+/* ═══════════════════════════════ ANIMATIONS ═══════════════════════════════ */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.page.active { animation: fadeIn 0.25s ease; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* Lang toggle */
+[data-lang="en"] .ar { display: none; }
+[data-lang="en"] .en { display: block; }
+[data-lang="ar"] .en { display: none; }
+[data-lang="ar"] .ar { display: block; }
+.en { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER ══════════════════════ -->
+<header>
+  <div class="logo">Gdwa <span class="ar">جدوى</span><span class="en">Planner</span></div>
+  <nav class="header-nav">
+    <button class="nav-btn active" onclick="showPage('weekly')" id="nav-weekly">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span class="ar">الجدول الأسبوعي</span><span class="en">Weekly</span>
+    </button>
+    <button class="nav-btn" onclick="showPage('tasks')" id="nav-tasks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/><path d="m9 11 3 3L22 4"/></svg>
+      <span class="ar">المهام</span><span class="en">Tasks</span>
+    </button>
+    <button class="nav-btn" onclick="showPage('quadrants')" id="nav-quadrants">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+      <span class="ar">الأولويات</span><span class="en">Quadrants</span>
+    </button>
+    <button class="nav-btn" onclick="showPage('stats')" id="nav-stats">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span class="ar">الإحصائيات</span><span class="en">Stats</span>
+    </button>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="openAddTask()" title="إضافة مهمة">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <button class="icon-btn" onclick="toggleSettings()" title="الإعدادات">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════════════════ SETTINGS PANEL ══════════════════════ -->
+<div class="settings-panel" id="settingsPanel">
+  <div class="settings-title ar">الإعدادات</div>
+  <div class="settings-title en" style="display:none">Settings</div>
+  <div class="setting-row">
+    <span class="setting-label ar">الوضع الليلي</span>
+    <span class="setting-label en" style="display:none">Dark Mode</span>
+    <button class="toggle on" id="themeToggle" onclick="toggleTheme()"></button>
+  </div>
+  <div class="setting-row">
+    <span class="setting-label ar">اللغة</span>
+    <span class="setting-label en" style="display:none">Language</span>
+    <button class="btn btn-ghost" style="padding:5px 12px;font-size:12px" onclick="toggleLang()">
+      <span class="ar">EN</span><span class="en">عربي</span>
+    </button>
+  </div>
+  <div class="setting-row">
+    <span class="setting-label ar">اتجاه الأسبوع</span>
+    <span class="setting-label en" style="display:none">Week Start</span>
+    <span style="font-size:11px;color:var(--text3)" class="ar">السبت → الجمعة</span>
+    <span style="font-size:11px;color:var(--text3)" class="en">Sat → Fri</span>
+  </div>
+  <div class="setting-row">
+    <span class="setting-label ar">تحميل الجدول</span>
+    <span class="setting-label en" style="display:none">Export</span>
+    <button class="btn btn-ghost" style="padding:5px 12px;font-size:12px" onclick="exportGrid()">PDF</button>
+  </div>
+  <div class="setting-row">
+    <span class="setting-label ar">تثبيت التطبيق</span>
+    <span class="setting-label en" style="display:none">Install App</span>
+    <button class="btn btn-ghost" style="padding:5px 12px;font-size:12px" onclick="installApp()" id="installBtn">
+      <span class="ar">تثبيت</span><span class="en">Install</span>
+    </button>
+  </div>
+
+  <!-- Notification Settings -->
+  <div class="notif-section">
+    <div class="notif-section-title ar">🔔 إعدادات الإشعارات العامة</div>
+    <div class="notif-row">
+      <div class="notif-label">
+        <span class="ar">تفعيل الإشعارات</span>
+        <small class="ar">يطلب إذن المتصفح</small>
+      </div>
+      <button class="toggle" id="globalNotifToggle" onclick="toggleGlobalNotif()"></button>
+    </div>
+    <div id="globalNotifOptions" style="display:none">
+      <div class="notif-row">
+        <div class="notif-label">
+          <span class="ar">قبل البدء بـ 15 دقيقة</span>
+        </div>
+        <button class="toggle on" id="notif15Toggle" onclick="toggleNotifSetting('notif15')"></button>
+      </div>
+      <div class="notif-row">
+        <div class="notif-label">
+          <span class="ar">قبل البدء بساعة</span>
+        </div>
+        <button class="toggle on" id="notif60Toggle" onclick="toggleNotifSetting('notif60')"></button>
+      </div>
+      <div class="notif-row">
+        <div class="notif-label">
+          <span class="ar">عند بدء المهمة</span>
+        </div>
+        <button class="toggle on" id="notifStartToggle" onclick="toggleNotifSetting('notifStart')"></button>
+      </div>
+      <div class="notif-row">
+        <div class="notif-label">
+          <span class="ar">إشعار صباحي بالأولويات</span>
+          <small class="ar">كل يوم الساعة 7:00 صباحاً</small>
+        </div>
+        <button class="toggle" id="notifMorningToggle" onclick="toggleNotifSetting('notifMorning')"></button>
+      </div>
+      <div class="notif-row">
+        <div class="notif-label">
+          <span class="ar">عند انتهاء المهمة</span>
+        </div>
+        <button class="toggle" id="notifEndToggle" onclick="toggleNotifSetting('notifEnd')"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE: WEEKLY ══════════════════════ -->
+<div class="page active" id="page-weekly">
+  <div class="week-header">
+    <div>
+      <div class="week-label ar">أسبوع <strong id="weekRangeAr"></strong></div>
+      <div class="week-label en" style="display:none">Week of <strong id="weekRangeEn"></strong></div>
+    </div>
+    <div class="week-nav">
+      <button class="week-nav-btn" onclick="changeWeek(-1)">›</button>
+      <button class="week-nav-btn" onclick="changeWeek(0)" style="padding:0 10px;width:auto;font-size:11px" class="ar">اليوم</button>
+      <button class="week-nav-btn" onclick="changeWeek(1)">‹</button>
+    </div>
+  </div>
+  <div class="grid-wrapper">
+    <div class="weekly-grid" id="weeklyGrid">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+  <div class="export-row" style="padding: 0 20px 20px;">
+    <button class="export-btn" onclick="exportGrid()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span class="ar">تحميل PDF</span><span class="en">Export PDF</span>
+    </button>
+    <button class="export-btn" onclick="exportExcel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <span class="ar">تحميل Excel</span><span class="en">Export Excel</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE: TASKS ══════════════════════ -->
+<div class="page" id="page-tasks">
+  <div class="page-inner">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div>
+        <div class="page-title ar"><strong>المهام</strong></div>
+        <div class="page-title en" style="display:none"><strong>Tasks</strong></div>
+        <div class="page-subtitle ar">إنشاء وإدارة مهامك الأسبوعية</div>
+        <div class="page-subtitle en" style="display:none">Create and manage your weekly tasks</div>
+      </div>
+      <button class="btn btn-primary" onclick="openAddTask()">
+        <span class="ar">+ مهمة جديدة</span><span class="en">+ New Task</span>
+      </button>
+    </div>
+    <!-- Filter chips -->
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap" id="filterChips">
+      <button class="day-chip selected" onclick="filterTasks('all')" data-filter="all"><span class="ar">الكل</span><span class="en">All</span></button>
+      <button class="day-chip" onclick="filterTasks('q1')" data-filter="q1" style="border-color:var(--q1)"><span class="ar">عاجل ومهم</span><span class="en">Q1</span></button>
+      <button class="day-chip" onclick="filterTasks('q2')" data-filter="q2" style="border-color:var(--q2)"><span class="ar">مهم وغير عاجل</span><span class="en">Q2</span></button>
+      <button class="day-chip" onclick="filterTasks('q3')" data-filter="q3" style="border-color:var(--q3)"><span class="ar">عاجل وغير مهم</span><span class="en">Q3</span></button>
+      <button class="day-chip" onclick="filterTasks('q4')" data-filter="q4" style="border-color:var(--q4)"><span class="ar">غير عاجل وغير مهم</span><span class="en">Q4</span></button>
+    </div>
+    <div class="task-list" id="taskListEl"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE: QUADRANTS ══════════════════════ -->
+<div class="page" id="page-quadrants">
+  <div class="page-inner">
+    <div class="page-title ar">الفلسفات الأربع <strong>لكوفي</strong></div>
+    <div class="page-title en" style="display:none">Covey's <strong>Four Quadrants</strong></div>
+    <div class="page-subtitle ar">تصنيف تلقائي للمهام بحسب الأهمية والإلحاح · الهدف: قضاء أكثر الوقت في الربع الثاني</div>
+    <div class="page-subtitle en" style="display:none">Auto-classification by urgency & importance · Goal: maximize time in Quadrant II</div>
+
+    <!-- Axis labels -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:6px;padding:0 2px">
+      <div style="text-align:center;font-size:10px;color:var(--q1);font-weight:700">⚡ <span class="ar">عاجل</span><span class="en">Urgent</span></div>
+      <div style="text-align:center;font-size:10px;color:var(--text3)">· <span class="ar">غير عاجل</span><span class="en">Not Urgent</span></div>
+    </div>
+
+    <div class="quadrant-grid" id="quadrantGrid">
+      <!-- Q1 -->
+      <div class="quadrant-panel q1-panel">
+        <div class="q-panel-header">
+          <div class="q-num">I</div>
+          <div>
+            <div class="q-title" style="color:var(--q1)"><span class="ar">افعل الآن</span><span class="en">Do Now</span></div>
+            <div class="q-sub"><span class="ar">عاجل + مهم</span><span class="en">Urgent + Important</span></div>
+          </div>
+        </div>
+        <div class="q-axis ar">أزمات · مواعيد نهائية · حالات طوارئ</div>
+        <div class="q-axis en" style="display:none">Crises · Deadlines · Emergencies</div>
+        <div id="qList1"></div>
+      </div>
+      <!-- Q2 ★ -->
+      <div class="quadrant-panel q2-panel" style="position:relative">
+        <div style="position:absolute;top:8px;left:8px;font-size:10px;color:var(--q2);font-weight:700">★ <span class="ar">الهدف</span><span class="en">GOAL</span></div>
+        <div class="q-panel-header">
+          <div class="q-num">II</div>
+          <div>
+            <div class="q-title" style="color:var(--q2)"><span class="ar">خطّط وانجز</span><span class="en">Plan & Execute</span></div>
+            <div class="q-sub"><span class="ar">مهم + غير عاجل</span><span class="en">Important + Not Urgent</span></div>
+          </div>
+        </div>
+        <div class="q-axis ar">تطوير الذات · بناء العلاقات · التخطيط الاستراتيجي</div>
+        <div class="q-axis en" style="display:none">Growth · Relationships · Strategic Planning</div>
+        <div id="qList2"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="quadrant-panel q3-panel">
+        <div class="q-panel-header">
+          <div class="q-num">III</div>
+          <div>
+            <div class="q-title" style="color:var(--q3)"><span class="ar">فوّض أو قلّص</span><span class="en">Delegate</span></div>
+            <div class="q-sub"><span class="ar">عاجل + غير مهم</span><span class="en">Urgent + Not Important</span></div>
+          </div>
+        </div>
+        <div class="q-axis ar">اجتماعات غير ضرورية · مقاطعات · مطالب الآخرين</div>
+        <div class="q-axis en" style="display:none">Interruptions · Unnecessary meetings</div>
+        <div id="qList3"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="quadrant-panel q4-panel">
+        <div class="q-panel-header">
+          <div class="q-num">IV</div>
+          <div>
+            <div class="q-title" style="color:var(--q4)"><span class="ar">تجنّب أو احذف</span><span class="en">Eliminate</span></div>
+            <div class="q-sub"><span class="ar">غير عاجل + غير مهم</span><span class="en">Not Urgent + Not Important</span></div>
+          </div>
+        </div>
+        <div class="q-axis ar">تصفّح عشوائي · مضيعات الوقت</div>
+        <div class="q-axis en" style="display:none">Time-wasters · Random browsing</div>
+        <div id="qList4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE: STATS ══════════════════════ -->
+<div class="page" id="page-stats">
+  <div class="page-inner">
+    <div class="page-title ar"><strong>الإحصائيات</strong> الأسبوعية</div>
+    <div class="page-title en" style="display:none">Weekly <strong>Analytics</strong></div>
+    <div class="page-subtitle ar">نظرة شاملة على توزيع وقتك وأولوياتك</div>
+    <div class="page-subtitle en" style="display:none">A comprehensive view of your time allocation</div>
+
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label ar">إجمالي المهام</div>
+        <div class="stat-label en" style="display:none">Total Tasks</div>
+      </div>
+      <div class="stat-card q2-card">
+        <div class="stat-value" id="statQ2">0</div>
+        <div class="stat-label ar">مهام الربع الثاني ★</div>
+        <div class="stat-label en" style="display:none">Quadrant II Tasks ★</div>
+      </div>
+      <div class="stat-card q1-card">
+        <div class="stat-value" id="statQ1">0</div>
+        <div class="stat-label ar">مهام عاجلة</div>
+        <div class="stat-label en" style="display:none">Urgent Tasks</div>
+      </div>
+      <div class="stat-card completed">
+        <div class="stat-value" id="statCompleted">0</div>
+        <div class="stat-label ar">مكتملة</div>
+        <div class="stat-label en" style="display:none">Completed</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <!-- Donut -->
+      <div class="chart-card">
+        <div class="chart-title ar">توزيع المهام بالأرباع</div>
+        <div class="chart-title en" style="display:none">Task Distribution by Quadrant</div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" width="120" height="120" viewBox="0 0 120 120" id="donutChart">
+            <circle cx="60" cy="60" r="45" fill="none" stroke="var(--surface2)" stroke-width="18"/>
+          </svg>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+      <!-- Bars by day -->
+      <div class="chart-card">
+        <div class="chart-title ar">المهام لكل يوم</div>
+        <div class="chart-title en" style="display:none">Tasks per Day</div>
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+    </div>
+
+    <!-- Ring chart -->
+    <div class="chart-card" style="margin-top:16px">
+      <div class="chart-title ar">نسبة وقتك في كل ربع</div>
+      <div class="chart-title en" style="display:none">Time % per Quadrant</div>
+      <div class="ring-row" id="ringRow"></div>
+    </div>
+
+    <!-- Covey insight -->
+    <div style="margin-top:20px;padding:18px;background:var(--surface2);border-radius:var(--radius);border-right:3px solid var(--q2)">
+      <div style="font-size:11px;color:var(--q2);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">
+        <span class="ar">توصية كوفي</span><span class="en">Covey Insight</span>
+      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.7" id="coveyInsight"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ ADD TASK OVERLAY ══════════════════════ -->
+<div class="overlay" id="addOverlay" onclick="closeOverlayOutside(event)">
+  <div class="modal">
+    <div class="modal-title ar">
+      <span id="modalTitleAr">إضافة <span style="color:var(--accent)">مهمة</span> جديدة</span>
+    </div>
+    <div class="modal-title en" style="display:none">
+      <span id="modalTitleEn">Add <span style="color:var(--accent)">Task</span></span>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label ar">اسم المهمة</label>
+      <label class="form-label en" style="display:none">Task Name</label>
+      <input class="form-input" id="taskName" placeholder="ماذا تريد أن تُنجز؟" type="text"/>
+    </div>
+
+    <!-- Date row -->
+    <div class="form-row" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="form-group">
+        <label class="form-label ar">اليوم</label>
+        <label class="form-label en" style="display:none">Day</label>
+        <div style="position:relative">
+          <input class="form-input" id="taskDay" type="number" min="1" max="31"
+            style="text-align:center;font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent);padding-bottom:22px"
+            oninput="clampDayInput()" onchange="clampDayInput()"
+          />
+          <div id="dayNameHint" style="
+            position:absolute;bottom:6px;left:0;right:0;
+            text-align:center;font-size:10px;color:var(--text3);
+            pointer-events:none;font-family:'Tajawal',sans-serif;
+          "></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label ar">الشهر</label>
+        <label class="form-label en" style="display:none">Month</label>
+        <select class="form-input" id="taskMonth" onchange="clampDayInput()">
+          <option value="1">يناير</option><option value="2">فبراير</option>
+          <option value="3">مارس</option><option value="4">أبريل</option>
+          <option value="5">مايو</option><option value="6">يونيو</option>
+          <option value="7">يوليو</option><option value="8">أغسطس</option>
+          <option value="9">سبتمبر</option><option value="10">أكتوبر</option>
+          <option value="11">نوفمبر</option><option value="12">ديسمبر</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label ar">السنة</label>
+        <label class="form-label en" style="display:none">Year</label>
+        <input class="form-input" id="taskYear" type="number" min="2024" max="2099"
+          style="text-align:center;font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text2)"
+          oninput="clampDayInput()" onchange="clampDayInput()"
+        />
+      </div>
+    </div>
+
+    <!-- Time from/to row — clock pickers -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label ar">من الساعة</label>
+        <label class="form-label en" style="display:none">From</label>
+        <div class="clock-field">
+          <div class="clock-display" id="taskHourDisplay" onclick="openClock('taskHour')">08:00</div>
+          <input type="hidden" id="taskHour" value="8"/>
+          <div class="clock-popup hidden" id="clockPopup_taskHour">
+            <div class="clock-svg-wrap">
+              <svg class="clock-svg" width="180" height="180" viewBox="0 0 180 180"
+                   id="clockSvg_taskHour" onclick="handleClockClick(event,'taskHour')">
+                <circle cx="90" cy="90" r="88" class="clock-face-bg" stroke="var(--border)" stroke-width="1"/>
+                <line id="clockHand_taskHour" x1="90" y1="90" x2="90" y2="20" class="clock-hand"/>
+                <circle cx="90" cy="90" r="4" class="clock-center"/>
+              </svg>
+            </div>
+            <div class="clock-val-display" id="clockVal_taskHour">08:00</div>
+            <div class="clock-popup-footer">
+              <button class="clock-ok" onclick="closeClock('taskHour')">تم</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label ar">إلى الساعة</label>
+        <label class="form-label en" style="display:none">To</label>
+        <div class="clock-field">
+          <div class="clock-display" id="taskHourEndDisplay" onclick="openClock('taskHourEnd')">09:00</div>
+          <input type="hidden" id="taskHourEnd" value="9"/>
+          <div class="clock-popup hidden" id="clockPopup_taskHourEnd">
+            <div class="clock-svg-wrap">
+              <svg class="clock-svg" width="180" height="180" viewBox="0 0 180 180"
+                   id="clockSvg_taskHourEnd" onclick="handleClockClick(event,'taskHourEnd')">
+                <circle cx="90" cy="90" r="88" class="clock-face-bg" stroke="var(--border)" stroke-width="1"/>
+                <line id="clockHand_taskHourEnd" x1="90" y1="90" x2="90" y2="20" class="clock-hand"/>
+                <circle cx="90" cy="90" r="4" class="clock-center"/>
+              </svg>
+            </div>
+            <div class="clock-val-display" id="clockVal_taskHourEnd">09:00</div>
+            <div class="clock-popup-footer">
+              <button class="clock-ok" onclick="closeClock('taskHourEnd')">تم</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration display + category -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label ar">المدة</label>
+        <label class="form-label en" style="display:none">Duration</label>
+        <div class="form-input" id="durationDisplay" style="color:var(--accent);font-weight:700;cursor:default">ساعة واحدة</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label ar">نوع المهمة</label>
+        <label class="form-label en" style="display:none">Category</label>
+        <input class="form-input" id="taskCat" placeholder="عمل، شخصي، صحة..." type="text"/>
+      </div>
+    </div>
+
+    <!-- Importance slider -->
+    <div class="form-group">
+      <label class="form-label ar">مستوى الأهمية</label>
+      <label class="form-label en" style="display:none">Importance Level</label>
+      <div class="slider-wrapper">
+        <input type="range" min="1" max="4" value="2" class="importance-slider" id="importanceSlider" oninput="syncSliderToQuad()"/>
+        <div class="slider-labels">
+          <span class="ar">غير مهم</span><span class="en" style="display:none">Low</span>
+          <span class="ar">مهم جداً</span><span class="en" style="display:none">Critical</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quadrant selector -->
+    <div class="form-group">
+      <label class="form-label ar">الربع / الأولوية</label>
+      <label class="form-label en" style="display:none">Quadrant / Priority</label>
+      <div class="quad-grid">
+        <button class="quad-btn q1" onclick="selectQuad('q1')">
+          <div class="qb-dot"></div>
+          <div class="qb-name"><span class="ar">عاجل + مهم</span><span class="en">Urgent + Important</span></div>
+          <div class="qb-sub">Q1</div>
+        </button>
+        <button class="quad-btn q2 selected" onclick="selectQuad('q2')" id="quadBtn2">
+          <div class="qb-dot"></div>
+          <div class="qb-name"><span class="ar">مهم + غير عاجل ★</span><span class="en">Important + Not Urgent ★</span></div>
+          <div class="qb-sub">Q2</div>
+        </button>
+        <button class="quad-btn q3" onclick="selectQuad('q3')">
+          <div class="qb-dot"></div>
+          <div class="qb-name"><span class="ar">عاجل + غير مهم</span><span class="en">Urgent + Not Important</span></div>
+          <div class="qb-sub">Q3</div>
+        </button>
+        <button class="quad-btn q4" onclick="selectQuad('q4')">
+          <div class="qb-dot"></div>
+          <div class="qb-name"><span class="ar">غير عاجل + غير مهم</span><span class="en">Not Urgent + Not Important</span></div>
+          <div class="qb-sub">Q4</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Per-task notifications -->
+    <div class="form-group">
+      <label class="form-label ar">🔔 إشعارات هذه المهمة</label>
+      <label class="form-label en" style="display:none">Task Notifications</label>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px" class="ar">تتغلب على الإعدادات العامة</div>
+      <div class="notif-chips" id="taskNotifChips">
+        <button class="notif-chip selected" data-notif="default" onclick="toggleTaskNotif(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c1.1 0 2-.9 2-2H10c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span class="ar">افتراضي</span>
+        </button>
+        <button class="notif-chip" data-notif="15min" onclick="toggleTaskNotif(this)">
+          <span>⏰ 15 دقيقة</span>
+        </button>
+        <button class="notif-chip" data-notif="30min" onclick="toggleTaskNotif(this)">
+          <span>⏰ 30 دقيقة</span>
+        </button>
+        <button class="notif-chip" data-notif="1hour" onclick="toggleTaskNotif(this)">
+          <span>⏰ ساعة</span>
+        </button>
+        <button class="notif-chip" data-notif="atstart" onclick="toggleTaskNotif(this)">
+          <span>🚀 عند البدء</span>
+        </button>
+        <button class="notif-chip" data-notif="atend" onclick="toggleTaskNotif(this)">
+          <span>✅ عند الانتهاء</span>
+        </button>
+        <button class="notif-chip" data-notif="none" onclick="toggleTaskNotif(this)">
+          <span>🔕 بدون إشعار</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Recurrence -->
+    <div class="form-group">
+      <label class="form-label ar">التكرار</label>
+      <label class="form-label en" style="display:none">Recurrence</label>
+      <div class="recur-grid" id="recurrenceChips">
+        <button class="day-chip" data-day="6">السبت</button>
+        <button class="day-chip" data-day="0">الأحد</button>
+        <button class="day-chip" data-day="1">الاثنين</button>
+        <button class="day-chip" data-day="2">الثلاثاء</button>
+        <button class="day-chip" data-day="3">الأربعاء</button>
+        <button class="day-chip" data-day="4">الخميس</button>
+        <button class="day-chip" data-day="5">الجمعة</button>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-danger" id="deleteTaskBtn" onclick="deleteCurrentTask()" style="display:none">
+        <span class="ar">حذف</span><span class="en">Delete</span>
+      </button>
+      <button class="btn btn-ghost" onclick="closeAddTask()">
+        <span class="ar">إلغاء</span><span class="en">Cancel</span>
+      </button>
+      <button class="btn btn-primary" onclick="saveTask()">
+        <span class="ar">حفظ المهمة</span><span class="en">Save Task</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ TOAST NOTIFICATION ══════════════════════ -->
+<div class="toast-notif" id="toastNotif">
+  <div class="toast-icon" id="toastIcon">🔔</div>
+  <div class="toast-body">
+    <div class="toast-title" id="toastTitle"></div>
+    <div class="toast-sub" id="toastSub"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════ COPYRIGHT FOOTER ══════════════════════ -->
+<div class="copyright-footer">
+  <span class="cf-logo">Gdwa</span>
+  <span class="cf-sep">·</span>
+  <span>© 2026 Kaream Mohamed Sultan</span>
+  <span class="cf-sep">·</span>
+  <span class="cf-license" onclick="showAbout()" title="GNU Affero General Public License v3.0">GNU AGPLv3</span>
+</div>
+
+<!-- ══════════════════════ ABOUT OVERLAY ══════════════════════ -->
+<div class="overlay" id="aboutOverlay" onclick="if(event.target===this)document.getElementById('aboutOverlay').classList.remove('open')">
+  <div class="modal" style="max-width:460px">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--accent)">Gdwa</div>
+      <div style="font-size:13px;color:var(--text3);margin-top:2px">جدوى · Strategic Weekly Planner</div>
+    </div>
+    <div style="background:var(--surface2);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--border)">
+      <div style="font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">حقوق النشر</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Kaream Mohamed Sultan</div>
+      <div style="font-size:12px;color:var(--text3)">© 2026 · جميع الحقوق محفوظة</div>
+    </div>
+    <div style="background:var(--surface2);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--border)">
+      <div style="font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">الرخصة</div>
+      <div style="font-size:13px;font-weight:700;color:var(--q2);margin-bottom:6px">GNU Affero General Public License v3.0</div>
+      <div style="font-size:11px;color:var(--text3);line-height:1.7">
+        هذا البرنامج مفتوح المصدر بموجب أقوى رخصة Copyleft. يُسمح بالاستخدام والتعديل والتوزيع بشرط أن تبقى جميع النسخ المشتقة مفتوحة المصدر تحت نفس الرخصة، بما في ذلك التطبيقات المُشغَّلة على الخوادم.
+      </div>
+      <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank"
+         style="display:inline-block;margin-top:10px;font-size:11px;color:var(--q2);text-decoration:none;border-bottom:1px solid var(--q2)">
+        gnu.org/licenses/agpl-3.0 ↗
+      </a>
+    </div>
+    <div style="background:var(--surface2);border-radius:var(--radius);padding:16px;border:1px solid var(--border)">
+      <div style="font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">عن التطبيق</div>
+      <div style="font-size:11px;color:var(--text3);line-height:1.7">
+        Gdwa مبني على فلسفة <strong style="color:var(--text2)">Stephen R. Covey</strong> في إدارة الوقت، المُستوحاة من كتاب <em>First Things First</em>. يُركّز على الربع الثاني — المهم وغير العاجل — كمحور للإنتاجية الحقيقية.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="document.getElementById('aboutOverlay').classList.remove('open')">
+        إغلاق
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let tasks = JSON.parse(localStorage.getItem('gdwa-tasks') || '[]');
+let weekOffset = 0;
+let selectedQuad = 'q2';
+let editingTaskId = null;
+let currentCellInfo = null; // {day, hour} when clicking on grid
+let settingsOpen = false;
+let deferredPrompt = null;
+
+const DAYS_AR = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const DAYS_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const WEEK_ORDER = [6,0,1,2,3,4,5]; // Sat to Fri
+const HOURS = [];
+for(let h=6; h<=23; h++) {
+  HOURS.push({h, label30: `${h}:00`, label60: `${h}:30`});
+}
+
+const quadColors = { q1: 'var(--q1)', q2: 'var(--q2)', q3: 'var(--q3)', q4: 'var(--q4)' };
+const quadNames_ar = { q1:'عاجل + مهم', q2:'مهم + غير عاجل ★', q3:'عاجل + غير مهم', q4:'غير مهم وغير عاجل' };
+const quadNames_en = { q1:'Urgent + Important', q2:'Important + Not Urgent ★', q3:'Urgent + Not Important', q4:'Not Important' };
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+function init() {
+  populateHourSelect();
+  buildWeeklyGrid();
+  renderTaskList();
+  renderQuadrants();
+  renderStats();
+  applyTheme();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  if(id === 'stats') renderStats();
+  if(id === 'quadrants') renderQuadrants();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WEEK HELPERS
+// ═══════════════════════════════════════════════════════════════
+function getWeekDates() {
+  const today = new Date();
+  // Find Saturday (6) of the current week
+  const todayDay = today.getDay();
+  const diffToSat = ((todayDay - 6) + 7) % 7; // days since last Saturday
+  const sat = new Date(today);
+  sat.setDate(today.getDate() - diffToSat + (weekOffset * 7));
+  sat.setHours(0,0,0,0);
+  return WEEK_ORDER.map((d, i) => {
+    const dt = new Date(sat);
+    dt.setDate(sat.getDate() + i);
+    return { dayOfWeek: d, date: dt };
+  });
+}
+
+function formatDateAr(dt) {
+  return `${dt.getDate()}/${dt.getMonth()+1}`;
+}
+function formatDateEn(dt) {
+  return dt.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+}
+
+function isToday(dt) {
+  const t = new Date();
+  return dt.getDate() === t.getDate() && dt.getMonth() === t.getMonth() && dt.getFullYear() === t.getFullYear();
+}
+
+function changeWeek(dir) {
+  if(dir === 0) weekOffset = 0;
+  else weekOffset += dir;
+  buildWeeklyGrid();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WEEKLY GRID BUILD
+// ═══════════════════════════════════════════════════════════════
+function buildWeeklyGrid() {
+  const grid = document.getElementById('weeklyGrid');
+  const weekDates = getWeekDates();
+
+  // Update week label
+  const first = weekDates[0].date, last = weekDates[6].date;
+  document.getElementById('weekRangeAr').textContent = `${formatDateAr(first)} - ${formatDateAr(last)}`;
+  document.getElementById('weekRangeEn').textContent = `${formatDateEn(first)} - ${formatDateEn(last)}`;
+
+  let html = '';
+
+  // ROW 1: header
+  html += `<div class="day-col-header time-col"></div>`;
+  weekDates.forEach(({dayOfWeek, date}) => {
+    const todayCls = isToday(date) ? ' today' : '';
+    html += `<div class="day-col-header${todayCls}">
+      <div class="day-name-ar">${DAYS_AR[dayOfWeek]}</div>
+      <div class="day-name-en">${DAYS_EN[dayOfWeek]}</div>
+      <div class="day-date">${formatDateAr(date)}</div>
+    </div>`;
+  });
+
+  // ROW 2: Priority zone
+  html += `<div class="priority-zone time-label">
+    <span class="priority-label-v">أولويات · Q2</span>
+  </div>`;
+  weekDates.forEach(({dayOfWeek, date}) => {
+    const dayTasks = getQ2TasksForDay(dayOfWeek, date);
+    html += `<div class="priority-zone">`;
+    for(let i=0; i<5; i++) {
+      if(dayTasks[i]) {
+        html += `<div class="priority-slot filled" onclick="openEditTask('${dayTasks[i].id}')">
+          <span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${dayTasks[i].name}</span>
+        </div>`;
+      } else {
+        html += `<div class="priority-slot empty" onclick="openAddTaskForDay(${dayOfWeek},'${date.toISOString()}')">
+          <span class="slot-num">${i+1}</span>
+        </div>`;
+      }
+    }
+    html += `</div>`;
+  });
+
+  // TIME ROWS — ساعة كاملة فقط
+  const hours = [];
+  for(let h=6; h<=22; h++) {
+    hours.push({h, label:`${String(h).padStart(2,'0')}:00`});
+  }
+
+  hours.forEach(({h, label}) => {
+    html += `<div class="time-cell"><span class="time-label-text">${label}</span></div>`;
+    weekDates.forEach(({dayOfWeek, date}) => {
+      const cellTasks = getTasksForCell(dayOfWeek, h, date);
+      // Only show tasks that START at this hour (spanning handled by height)
+      const startingTasks = cellTasks.filter(t => t.startSlot === h);
+      html += `<div class="task-cell" onclick="handleCellClick(${dayOfWeek},${h},'${date.toISOString()}')" id="cell-${dayOfWeek}-${h}">`;
+      startingTasks.forEach(t => {
+        const dur = Math.max(1, t.duration || 1);
+        // Height = dur * cell height (54px) minus borders (dur*1px)
+        const blockH = dur * 54 - 4;
+        const qColors = {q1:'var(--q1)',q2:'var(--q2)',q3:'var(--q3)',q4:'var(--q4)'};
+        html += `<div class="task-block ${t.quad}" 
+          style="height:${blockH}px;z-index:5;border-right-color:${qColors[t.quad]}"
+          onclick="event.stopPropagation();openEditTask('${t.id}')">
+          <div class="t-name">${t.name}</div>
+          ${t.category ? `<div class="t-cat">${t.category}</div>` : ''}
+          ${dur > 1 ? `<div class="t-dur">${dur}h</div>` : ''}
+        </div>`;
+      });
+      html += `</div>`;
+    });
+  });
+
+  grid.innerHTML = html;
+}
+
+function getQ2TasksForDay(dayOfWeek, date) {
+  return tasks.filter(t => {
+    if(t.quad !== 'q2') return false;
+    const days = t.recurDays && t.recurDays.length ? t.recurDays : [t.day];
+    return days.includes(dayOfWeek);
+  }).slice(0,5);
+}
+
+function getTasksForCell(dayOfWeek, h, date) {
+  return tasks.filter(t => {
+    const days = t.recurDays && t.recurDays.length ? t.recurDays : [t.day];
+    if(!days.includes(dayOfWeek)) return false;
+    return t.startSlot === h;
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CELL CLICK
+// ═══════════════════════════════════════════════════════════════
+function handleCellClick(dayOfWeek, h, dateStr) {
+  currentCellInfo = {day: dayOfWeek, hour: h};
+  openAddTask();
+  const dt = new Date(dateStr);
+  document.getElementById('taskDay').value = dt.getDate();
+  document.getElementById('taskMonth').value = dt.getMonth() + 1;
+  document.getElementById('taskYear').value = dt.getFullYear();
+  setClockValue('taskHour', h);
+  setClockValue('taskHourEnd', Math.min(h + 1, 23));
+  calcDuration();
+}
+
+function openAddTaskForDay(dayOfWeek, dateStr) {
+  currentCellInfo = {day: dayOfWeek, hour: 8, min: 0};
+  openAddTask();
+  document.getElementById('taskDay').value = dayOfWeek;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODAL HELPERS
+// ═══════════════════════════════════════════════════════════════
+function populateHourSelect() {
+  // Clock pickers — just set defaults
+  setClockValue('taskHour', 8);
+  setClockValue('taskHourEnd', 9);
+  renderClockFace('taskHour');
+  renderClockFace('taskHourEnd');
+  // Set year input default
+  document.getElementById('taskYear').value = new Date().getFullYear();
+  // Set current month
+  document.getElementById('taskMonth').value = new Date().getMonth() + 1;
+  calcDuration();
+}
+
+// ── Clock picker functions ──
+function renderClockFace(id) {
+  const svg = document.getElementById('clockSvg_' + id);
+  if(!svg) return;
+  const val = parseInt(document.getElementById(id).value) || 0;
+  const cx = 90, cy = 90, r = 72;
+  // Remove old ticks
+  svg.querySelectorAll('.clock-tick-g').forEach(e => e.remove());
+  // Draw 24 hour ticks
+  for(let h=0; h<24; h++) {
+    const angle = (h / 24) * 2 * Math.PI - Math.PI/2;
+    const isOuter = h < 12;
+    const dist = isOuter ? r : r - 20;
+    const tx = cx + dist * Math.cos(angle);
+    const ty = cy + dist * Math.sin(angle);
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.classList.add('clock-tick-g');
+    // dot
+    const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('cx', tx); dot.setAttribute('cy', ty); dot.setAttribute('r', h === val ? 10 : 7);
+    dot.setAttribute('fill', h === val ? 'var(--accent)' : 'var(--surface3)');
+    dot.style.transition = 'all 0.15s';
+    g.appendChild(dot);
+    // label
+    const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x', tx); txt.setAttribute('y', ty);
+    txt.setAttribute('text-anchor','middle'); txt.setAttribute('dominant-baseline','central');
+    txt.setAttribute('font-size', h === val ? '9' : '8');
+    txt.setAttribute('fill', h === val ? '#0c0c0e' : 'var(--text3)');
+    txt.setAttribute('font-family','JetBrains Mono,monospace');
+    txt.setAttribute('font-weight', h === val ? '700' : '400');
+    txt.textContent = String(h).padStart(2,'0');
+    g.appendChild(txt);
+    svg.insertBefore(g, svg.querySelector('line'));
+  }
+  // Update hand
+  updateClockHand(id, val);
+}
+
+function updateClockHand(id, h) {
+  const hand = document.getElementById('clockHand_' + id);
+  if(!hand) return;
+  const cx=90, cy=90;
+  const angle = (h/24)*2*Math.PI - Math.PI/2;
+  const dist = h < 12 ? 62 : 42;
+  const x2 = cx + dist * Math.cos(angle);
+  const y2 = cy + dist * Math.sin(angle);
+  hand.setAttribute('x2', x2); hand.setAttribute('y2', y2);
+}
+
+function handleClockClick(e, id) {
+  const svg = e.currentTarget;
+  const rect = svg.getBoundingClientRect();
+  const mx = e.clientX - rect.left - 90;
+  const my = e.clientY - rect.top - 90;
+  const angle = Math.atan2(my, mx) + Math.PI/2;
+  const dist = Math.sqrt(mx*mx + my*my);
+  let h = Math.round((angle < 0 ? angle + 2*Math.PI : angle) / (2*Math.PI) * 24) % 24;
+  // outer ring (dist > 52) = AM (0-11), inner = PM (12-23)
+  if(dist < 52 && h < 12) h += 12;
+  if(dist >= 52 && h >= 12) h -= 12;
+  setClockValue(id, h);
+  renderClockFace(id);
+  calcDuration();
+}
+
+function setClockValue(id, h) {
+  document.getElementById(id).value = h;
+  const label = String(h).padStart(2,'0') + ':00';
+  const disp = document.getElementById(id + 'Display');
+  if(disp) disp.textContent = label;
+  const val = document.getElementById('clockVal_' + id);
+  if(val) val.textContent = label;
+}
+
+function openClock(id) {
+  // Close all others
+  document.querySelectorAll('.clock-popup').forEach(p => p.classList.add('hidden'));
+  const popup = document.getElementById('clockPopup_' + id);
+  if(popup) { popup.classList.remove('hidden'); renderClockFace(id); }
+}
+
+function closeClock(id) {
+  const popup = document.getElementById('clockPopup_' + id);
+  if(popup) popup.classList.add('hidden');
+  calcDuration();
+}
+
+// Close clock on outside click
+document.addEventListener('click', e => {
+  if(!e.target.closest('.clock-field')) {
+    document.querySelectorAll('.clock-popup').forEach(p => p.classList.add('hidden'));
+  }
+});
+
+function getDaysInMonth(m, y) {
+  return new Date(y, m, 0).getDate(); // last day of month
+}
+
+function clampDayInput() {
+  const inp = document.getElementById('taskDay');
+  const m = parseInt(document.getElementById('taskMonth').value) || new Date().getMonth() + 1;
+  const y = parseInt(document.getElementById('taskYear').value) || new Date().getFullYear();
+  const maxDay = getDaysInMonth(m, y);
+  inp.max = maxDay;
+  let val = parseInt(inp.value);
+  if(isNaN(val) || val < 1) val = 1;
+  if(val > maxDay) val = maxDay;
+  inp.value = val;
+  updateDayName();
+}
+
+function updateDayName() {
+  const d = parseInt(document.getElementById('taskDay').value);
+  const m = parseInt(document.getElementById('taskMonth').value);
+  const y = parseInt(document.getElementById('taskYear').value);
+  if(!d || !m || !y) return;
+  // update max dynamically
+  const maxDay = getDaysInMonth(m, y);
+  document.getElementById('taskDay').max = maxDay;
+  const dt = new Date(y, m - 1, d);
+  const names = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  const hint = document.getElementById('dayNameHint');
+  if(hint) hint.textContent = isNaN(dt.getTime()) ? '' : names[dt.getDay()];
+}
+
+function calcDuration() {
+  const from = parseInt(document.getElementById('taskHour').value);
+  let to = parseInt(document.getElementById('taskHourEnd').value);
+  // auto-fix if end <= start
+  if(to <= from) {
+    to = from + 1;
+    document.getElementById('taskHourEnd').value = to;
+  }
+  const dur = to - from;
+  const dEl = document.getElementById('durationDisplay');
+  if(dur === 1) dEl.textContent = 'ساعة واحدة';
+  else if(dur === 2) dEl.textContent = 'ساعتان';
+  else dEl.textContent = `${dur} ساعات`;
+}
+
+function openAddTask() {
+  editingTaskId = null;
+  document.getElementById('taskName').value = '';
+  document.getElementById('taskCat').value = '';
+  document.getElementById('importanceSlider').value = 2;
+  const now = new Date();
+  document.getElementById('taskDay').value = now.getDate();
+  document.getElementById('taskMonth').value = now.getMonth() + 1;
+  document.getElementById('taskYear').value = now.getFullYear();
+  setClockValue('taskHour', 8);
+  setClockValue('taskHourEnd', 9);
+  calcDuration();
+  selectQuad('q2');
+  document.querySelectorAll('.day-chip[data-day]').forEach(c => c.classList.remove('selected'));
+  document.getElementById('deleteTaskBtn').style.display = 'none';
+  document.getElementById('addOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('taskName').focus(), 100);
+}
+
+function openEditTask(id) {
+  const t = tasks.find(t => t.id === id);
+  if(!t) return;
+  editingTaskId = id;
+  document.getElementById('taskName').value = t.name;
+  document.getElementById('taskCat').value = t.category || '';
+  document.getElementById('taskDay').value = t.dayNum || new Date().getDate();
+  document.getElementById('taskHour').value = t.startSlot;
+  setClockValue('taskHourEnd', t.endSlot || ((t.startSlot||8) + (t.duration || 1)));
+  document.getElementById('taskMonth').value = t.taskMonth || (new Date().getMonth() + 1);
+  // sync dayNum
+  document.getElementById('taskYear').value = t.taskYear || new Date().getFullYear();
+  calcDuration();
+  document.getElementById('taskDuration').value = t.duration || 2;
+  document.getElementById('importanceSlider').value = {q1:4,q2:3,q3:2,q4:1}[t.quad] || 2;
+  selectQuad(t.quad);
+  document.querySelectorAll('.day-chip[data-day]').forEach(c => {
+    c.classList.toggle('selected', t.recurDays && t.recurDays.includes(parseInt(c.dataset.day)));
+  });
+  setTaskNotifChips(t.notifType || 'default');
+  document.getElementById('deleteTaskBtn').style.display = 'block';
+  document.getElementById('addOverlay').classList.add('open');
+}
+
+function closeAddTask() {
+  document.getElementById('addOverlay').classList.remove('open');
+  currentCellInfo = null;
+}
+
+function closeOverlayOutside(e) {
+  if(e.target === e.currentTarget) closeAddTask();
+}
+
+function selectQuad(q) {
+  selectedQuad = q;
+  document.querySelectorAll('.quad-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector(`.quad-btn.${q}`).classList.add('selected');
+  document.getElementById('importanceSlider').value = {q1:4,q2:3,q3:2,q4:1}[q];
+}
+
+function syncSliderToQuad() {
+  const v = parseInt(document.getElementById('importanceSlider').value);
+  const map = {4:'q1',3:'q2',2:'q3',1:'q4'};
+  selectQuad(map[v]);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SAVE / DELETE TASK
+// ═══════════════════════════════════════════════════════════════
+function saveTask() {
+  const name = document.getElementById('taskName').value.trim();
+  if(!name) { document.getElementById('taskName').style.borderColor='var(--q1)'; return; }
+  document.getElementById('taskName').style.borderColor='';
+
+  const recurDays = [];
+  document.querySelectorAll('.day-chip[data-day].selected').forEach(c => recurDays.push(parseInt(c.dataset.day)));
+
+  const task = {
+    id: editingTaskId || Date.now().toString(),
+    name,
+    category: document.getElementById('taskCat').value.trim(),
+    dayNum: parseInt(document.getElementById('taskDay').value),
+    day: new Date(
+      parseInt(document.getElementById('taskYear').value),
+      parseInt(document.getElementById('taskMonth').value) - 1,
+      parseInt(document.getElementById('taskDay').value)
+    ).getDay(),
+    startSlot: parseInt(document.getElementById('taskHour').value),
+    endSlot: parseInt(document.getElementById('taskHourEnd').value),
+    duration: parseInt(document.getElementById('taskHourEnd').value) - parseInt(document.getElementById('taskHour').value),
+    taskMonth: parseInt(document.getElementById('taskMonth').value),
+    taskYear: parseInt(document.getElementById('taskYear').value),
+    quad: selectedQuad,
+    recurDays,
+    notifType: getSelectedTaskNotif(),
+    completed: false,
+    createdAt: Date.now()
+  };
+
+  if(editingTaskId) {
+    const idx = tasks.findIndex(t => t.id === editingTaskId);
+    if(idx !== -1) tasks[idx] = task;
+  } else {
+    tasks.push(task);
+  }
+
+  saveTasks();
+  closeAddTask();
+  buildWeeklyGrid();
+  renderTaskList();
+  renderQuadrants();
+  if(notifSettings.enabled) scheduleAllNotifications();
+}
+
+function deleteCurrentTask() {
+  if(!editingTaskId) return;
+  tasks = tasks.filter(t => t.id !== editingTaskId);
+  saveTasks();
+  closeAddTask();
+  buildWeeklyGrid();
+  renderTaskList();
+  renderQuadrants();
+}
+
+function saveTasks() {
+  localStorage.setItem('gdwa-tasks', JSON.stringify(tasks));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TASK LIST
+// ═══════════════════════════════════════════════════════════════
+let currentFilter = 'all';
+function filterTasks(f) {
+  currentFilter = f;
+  document.querySelectorAll('[data-filter]').forEach(c => c.classList.toggle('selected', c.dataset.filter === f));
+  renderTaskList();
+}
+
+function renderTaskList() {
+  const el = document.getElementById('taskListEl');
+  const filtered = currentFilter === 'all' ? tasks : tasks.filter(t => t.quad === currentFilter);
+  if(!filtered.length) {
+    el.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      <p>لا توجد مهام بعد. أضف مهمة جديدة!</p>
+    </div>`;
+    return;
+  }
+  el.innerHTML = filtered.map(t => {
+    const slot = t.startSlot;
+    const h = 6 + Math.floor(slot/2);
+    const m = (slot%2)*30;
+    const timeStr = `${DAYS_AR[t.day]} ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    return `<div class="task-list-item ${t.quad}" onclick="openEditTask('${t.id}')">
+      <div class="tli-bar"></div>
+      <div class="tli-body">
+        <div class="tli-name">${t.name}</div>
+        <div class="tli-meta">${timeStr} ${t.category ? '· '+t.category : ''} · ${quadNames_ar[t.quad]}</div>
+      </div>
+      <div class="tli-actions">
+        <button class="tli-action" onclick="event.stopPropagation();toggleComplete('${t.id}')" title="إتمام">
+          ${t.completed 
+            ? `<svg viewBox="0 0 24 24" fill="none" stroke="var(--q2)" stroke-width="2" width="16" height="16"><path d="M20 6L9 17l-5-5"/></svg>`
+            : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="9"/></svg>`
+          }
+        </button>
+        <button class="tli-action" onclick="event.stopPropagation();confirmDeleteTask('${t.id}')" title="حذف"
+          style="color:var(--q1);opacity:0.6" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+          </svg>
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleComplete(id) {
+  const t = tasks.find(t => t.id === id);
+  if(t) { t.completed = !t.completed; saveTasks(); renderTaskList(); renderStats(); }
+}
+
+function confirmDeleteTask(id) {
+  const t = tasks.find(t => t.id === id);
+  if(!t) return;
+  // Simple confirm using a styled toast-like confirm
+  showDeleteConfirm(id, t.name);
+}
+
+function showDeleteConfirm(id, name) {
+  // Remove any existing confirm
+  const old = document.getElementById('deleteConfirmBar');
+  if(old) old.remove();
+
+  const bar = document.createElement('div');
+  bar.id = 'deleteConfirmBar';
+  bar.style.cssText = `
+    position:fixed; bottom:48px; left:50%; transform:translateX(-50%);
+    background:var(--surface); border:1px solid var(--q1);
+    border-radius:10px; padding:12px 16px; z-index:300;
+    display:flex; align-items:center; gap:12px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.5); min-width:280px;
+    animation: fadeIn 0.2s ease;
+  `;
+  bar.innerHTML = `
+    <div style="flex:1;font-size:12px;color:var(--text2)">
+      <div style="font-weight:700;color:var(--text);margin-bottom:2px">حذف المهمة؟</div>
+      <div style="color:var(--text3);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px">${name}</div>
+    </div>
+    <button onclick="document.getElementById('deleteConfirmBar').remove()"
+      style="background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:6px 12px;border-radius:6px;cursor:pointer;font-family:Tajawal,sans-serif;font-size:12px">
+      إلغاء
+    </button>
+    <button onclick="doDeleteTask('${id}')"
+      style="background:rgba(224,85,85,0.15);border:1px solid var(--q1);color:var(--q1);padding:6px 12px;border-radius:6px;cursor:pointer;font-family:Tajawal,sans-serif;font-size:12px;font-weight:700">
+      حذف
+    </button>
+  `;
+  document.body.appendChild(bar);
+  setTimeout(() => { if(bar.parentNode) bar.remove(); }, 5000);
+}
+
+function doDeleteTask(id) {
+  const bar = document.getElementById('deleteConfirmBar');
+  if(bar) bar.remove();
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  buildWeeklyGrid();
+  renderTaskList();
+  renderQuadrants();
+  renderStats();
+  showToast('🗑️', 'تم الحذف', '');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// QUADRANTS PAGE
+// ═══════════════════════════════════════════════════════════════
+function renderQuadrants() {
+  ['1','2','3','4'].forEach(n => {
+    const el = document.getElementById('qList'+n);
+    const q = 'q'+n;
+    const qTasks = tasks.filter(t => t.quad === q);
+    if(!qTasks.length) {
+      el.innerHTML = `<div class="empty-state" style="padding:16px"><p style="font-size:11px">لا توجد مهام في هذا الربع</p></div>`;
+      return;
+    }
+    el.innerHTML = qTasks.map(t => {
+      const slot = t.startSlot;
+      const h = 6+Math.floor(slot/2), m=(slot%2)*30;
+      return `<div class="q-task-item" onclick="openEditTask('${t.id}')">
+        <div class="q-task-dot" style="background:${quadColors[t.quad]}"></div>
+        <div class="q-task-name">${t.name}</div>
+        <div class="q-task-time">${DAYS_AR[t.day]}</div>
+      </div>`;
+    }).join('');
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════════════
+function renderStats() {
+  const total = tasks.length;
+  const q1c = tasks.filter(t => t.quad==='q1').length;
+  const q2c = tasks.filter(t => t.quad==='q2').length;
+  const q3c = tasks.filter(t => t.quad==='q3').length;
+  const q4c = tasks.filter(t => t.quad==='q4').length;
+  const comp = tasks.filter(t => t.completed).length;
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statQ1').textContent = q1c;
+  document.getElementById('statQ2').textContent = q2c;
+  document.getElementById('statCompleted').textContent = comp;
+
+  // Donut
+  renderDonut([q1c, q2c, q3c, q4c], total);
+  // Bar
+  renderBars();
+  // Rings
+  renderRings([q1c, q2c, q3c, q4c], total);
+  // Insight
+  renderInsight(q2c, total);
+}
+
+function renderDonut(counts, total) {
+  const colors = ['var(--q1)','var(--q2)','var(--q3)','var(--q4)'];
+  const labels_ar = ['عاجل + مهم','مهم + غير عاجل','عاجل + غير مهم','غير مهم'];
+  const svg = document.getElementById('donutChart');
+  const legend = document.getElementById('donutLegend');
+  const r = 45, cx = 60, cy = 60;
+  const circ = 2 * Math.PI * r;
+  let offset = 0;
+  let segs = '';
+  let legHTML = '';
+
+  counts.forEach((c, i) => {
+    const pct = total > 0 ? c / total : 0;
+    const dash = pct * circ;
+    segs += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" 
+      stroke="${colors[i]}" stroke-width="18"
+      stroke-dasharray="${dash} ${circ - dash}"
+      stroke-dashoffset="${-offset}"
+      transform="rotate(-90 ${cx} ${cy})" opacity="0.9"/>`;
+    offset += dash;
+    legHTML += `<div class="donut-leg-item">
+      <div class="donut-leg-dot" style="background:${colors[i]}"></div>
+      <div class="donut-leg-name">${labels_ar[i]}</div>
+      <div class="donut-leg-pct" style="color:${colors[i]}">${total>0?Math.round(pct*100):0}%</div>
+    </div>`;
+  });
+
+  svg.innerHTML = `<circle cx="60" cy="60" r="45" fill="none" stroke="var(--surface2)" stroke-width="18"/>${segs}
+    <text x="60" y="64" text-anchor="middle" font-size="16" font-family="Fraunces,serif" fill="var(--text)" font-weight="600">${total}</text>`;
+  legend.innerHTML = legHTML;
+}
+
+function renderBars() {
+  const el = document.getElementById('barChart');
+  const dayCounts = WEEK_ORDER.map(d => ({
+    name: DAYS_AR[d],
+    count: tasks.filter(t => {
+      const days = t.recurDays && t.recurDays.length ? t.recurDays : [t.day];
+      return days.includes(d);
+    }).length
+  }));
+  const max = Math.max(1, ...dayCounts.map(d => d.count));
+  el.innerHTML = dayCounts.map(({name, count}) => `
+    <div class="bar-item">
+      <div class="bar-header">
+        <span class="bar-name">${name}</span>
+        <span class="bar-val">${count}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${(count/max)*100}%;background:var(--accent)"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRings(counts, total) {
+  const colors = ['var(--q1)','var(--q2)','var(--q3)','var(--q4)'];
+  const labels = ['Q1','Q2 ★','Q3','Q4'];
+  const el = document.getElementById('ringRow');
+  el.innerHTML = counts.map((c, i) => {
+    const pct = total > 0 ? Math.round((c/total)*100) : 0;
+    const r = 30, circ = 2*Math.PI*r;
+    const dash = (pct/100)*circ;
+    return `<div class="ring-item">
+      <svg class="ring-svg" width="80" height="80" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="8"/>
+        <circle cx="40" cy="40" r="${r}" fill="none" stroke="${colors[i]}" stroke-width="8"
+          stroke-dasharray="${dash} ${circ-dash}"
+          stroke-dashoffset="${circ/4}"
+          transform="rotate(-90 40 40)" opacity="0.9"/>
+        <text x="40" y="44" text-anchor="middle" font-size="13" font-family="JetBrains Mono,monospace" fill="${colors[i]}" font-weight="500">${pct}%</text>
+      </svg>
+      <div class="ring-name" style="color:${colors[i]}">${labels[i]}</div>
+      <div class="ring-pct" style="color:${colors[i]}">${c} مهام</div>
+    </div>`;
+  }).join('');
+}
+
+function renderInsight(q2Count, total) {
+  const el = document.getElementById('coveyInsight');
+  const pct = total > 0 ? Math.round((q2Count/total)*100) : 0;
+  let msg = '';
+  if(total === 0) {
+    msg = 'ابدأ بإضافة مهامك وسنحلل أولوياتك. تذكّر مقولة كوفي: "المهام المهمة نادراً ما تكون عاجلة، والمهام العاجلة نادراً ما تكون مهمة."';
+  } else if(pct >= 60) {
+    msg = `ممتاز! ${pct}٪ من مهامك في الربع الثاني. أنت تعيش بأسلوب كوفي الحقيقي — تستثمر في المستقبل وتتجنب الإطفاء المستمر للحرائق.`;
+  } else if(pct >= 40) {
+    msg = `جيد، لكن يمكن تحسينه. ${pct}٪ في الربع الثاني. حاول تحويل بعض مهام Q1 إلى تخطيط استباقي Q2 لتقليل الأزمات.`;
+  } else {
+    msg = `تحذير: فقط ${pct}٪ من وقتك في الربع الثاني. أنت في دوامة الإلحاح! خصّص وقتاً للتخطيط والتطوير الذاتي قبل أن تتحول الأزمات إلى نمط حياة.`;
+  }
+  el.textContent = msg;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// THEME / SETTINGS
+// ═══════════════════════════════════════════════════════════════
+let isDark = true;
+function applyTheme() {
+  isDark = localStorage.getItem('gdwa-theme') !== 'light';
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeToggle').classList.toggle('on', isDark);
+}
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  localStorage.setItem('gdwa-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeToggle').classList.toggle('on', isDark);
+}
+
+let currentLang = 'ar';
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  document.documentElement.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+}
+
+function toggleSettings() {
+  settingsOpen = !settingsOpen;
+  document.getElementById('settingsPanel').classList.toggle('open', settingsOpen);
+}
+document.addEventListener('click', e => {
+  if(settingsOpen && !e.target.closest('#settingsPanel') && !e.target.closest('.icon-btn')) {
+    settingsOpen = false;
+    document.getElementById('settingsPanel').classList.remove('open');
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// EXPORT
+// ═══════════════════════════════════════════════════════════════
+function exportGrid() {
+  const weekDates = getWeekDates();
+  const first = weekDates[0].date, last = weekDates[6].date;
+  const weekStr = `${formatDateAr(first)} - ${formatDateAr(last)}`;
+
+  // Build priority rows per day
+  const priorityRows = weekDates.map(({dayOfWeek, date}) => {
+    const pts = getQ2TasksForDay(dayOfWeek, date);
+    return Array.from({length:5}, (_,i) => pts[i]
+      ? `<div class="p-item">${i+1}. ${pts[i].name}</div>`
+      : `<div class="p-empty">${i+1}.</div>`
+    ).join('');
+  });
+
+  // Build time rows with proper rowspan for multi-hour tasks
+  // Track which cells are already "occupied" by a spanning task above
+  const occupied = {}; // key: "dayOfWeek-h" => true
+  let timeRows = '';
+  for(let h=6; h<=22; h++) {
+    const label = `${String(h).padStart(2,'0')}:00`;
+    timeRows += `<tr>`;
+    timeRows += `<td class="time-col">${label}</td>`;
+    weekDates.forEach(({dayOfWeek}) => {
+      const key = dayOfWeek + '-' + h;
+      if(occupied[key]) return; // skip — covered by rowspan above
+      const ts = getTasksForCell(dayOfWeek, h, new Date()).filter(t => t.startSlot === h);
+      if(ts.length > 0) {
+        const t = ts[0]; // take first task
+        const dur = Math.max(1, t.duration || 1);
+        const qc = {q1:'#e05555',q2:'#4e9eff',q3:'#f5a623',q4:'#6b7280'}[t.quad];
+        const endH = h + dur;
+        // Mark future rows as occupied
+        for(let d=1; d<dur; d++) occupied[dayOfWeek+'-'+(h+d)] = true;
+        const cellH = dur * 26;
+        timeRows += `<td class="task-col" rowspan="${dur}" 
+          style="height:${cellH}px;background:${qc}12;border-right:3px solid ${qc};vertical-align:top;padding:3px 4px;">
+          <div class="tp-name" style="border-right:none">${t.name}</div>
+          <div class="tp-time">${String(h).padStart(2,'0')}:00 – ${String(endH).padStart(2,'0')}:00</div>
+          ${dur > 1 ? `<div style="font-size:6px;color:${qc};margin-top:2px;font-family:monospace">${dur}h</div>` : ''}
+        </td>`;
+      } else {
+        timeRows += `<td class="task-col"></td>`;
+      }
+    });
+    timeRows += `</tr>`;
+  }
+
+  const printDate = new Date().toLocaleDateString('ar-SA');
+
+  const html = `<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Gdwa — ${weekStr}</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,600&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: A4 landscape;
+  margin: 8mm 8mm;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  width: 297mm;
+}
+body {
+  width: 297mm;
+  font-family:'Tajawal',sans-serif;
+  background:#ffffff;
+  color:#1a1814;
+  direction:rtl;
+  font-size:10px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page-wrap {
+  width: 100%;
+  min-width: 270mm;
+}
+
+/* ── Header ── */
+.print-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom:5px; border-bottom:2.5px solid #c9a96e; margin-bottom:7px;
+  width:100%;
+}
+.ph-logo { font-family:'Fraunces',serif; font-size:22px; font-weight:600; color:#c9a96e; letter-spacing:-0.5px; }
+.ph-sub { font-size:8px; color:#6b6560; font-weight:300; margin-top:1px; }
+.ph-week { font-size:9px; color:#a09890; font-family:monospace; }
+
+/* ── Legend ── */
+.legend { display:flex; gap:14px; margin-bottom:6px; }
+.leg { display:flex; align-items:center; gap:3px; font-size:8px; color:#6b6560; }
+.leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+/* ── Priority zone ── */
+.priority-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+  table-layout: fixed;
+}
+.ps-label {
+  font-size:7px; font-weight:700; color:#8b6d3f; text-transform:uppercase;
+  letter-spacing:0.4px; padding:3px 4px; background:#fdf8f0;
+  border:1px solid #e0d9ce; writing-mode:vertical-rl;
+  transform:rotate(180deg); text-align:center; width:18px;
+}
+.ps-day {
+  font-size:8px; font-weight:700; padding:3px 4px;
+  border:1px solid #e0d9ce; background:#fffdf9; vertical-align:top;
+}
+.ps-day-name { font-size:10px; font-weight:700; color:#1a1814; }
+.ps-day-date { font-size:7px; color:#a09890; display:block; margin-bottom:3px; }
+.p-item {
+  font-size:8px; color:#1a3a5c; padding:1px 3px;
+  border-right:2px solid #4e9eff; background:#eef6ff;
+  border-radius:2px; margin-bottom:2px; line-height:1.4;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.p-empty { font-size:8px; color:#d0cbc5; padding:1px 3px; margin-bottom:2px; line-height:1.4; }
+
+/* ── Time grid ── */
+.grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.grid-table colgroup col:first-child { width: 28px; }
+.col-head {
+  font-size:9px; text-align:center;
+  padding:5px 2px; background:#fafaf8;
+  border:1px solid #ddd9d2;
+}
+.col-head.today-col { background:#fdf5e6; border-bottom:2px solid #c9a96e; }
+.ch-day  { font-size:11px; font-weight:700; color:#1a1814; display:block; }
+.ch-en   { font-size:7px; color:#a09890; display:block; }
+.ch-date { font-size:7px; color:#6b6560; display:block; margin-top:1px; }
+
+.time-col {
+  font-size:7px; color:#a09890; font-family:monospace;
+  text-align:center; padding:0;
+  border:1px solid #ddd9d2; background:#f4f2ef;
+  vertical-align:middle; height:24px; width:28px;
+}
+.task-col {
+  border:1px solid #e8e4de;
+  padding:1px 2px;
+  vertical-align:top;
+  background:#ffffff;
+  height:24px;
+}
+.tp-name {
+  display:block; font-size:8px; font-weight:700; color:#1a1814;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.tp-time {
+  display:block; font-size:6px; color:#888;
+  font-family:monospace;
+}
+
+/* ── Footer ── */
+.print-footer {
+  margin-top:5px; display:flex; justify-content:space-between;
+  font-size:7px; color:#a09890;
+  border-top:1px solid #e0d9ce; padding-top:4px;
+}
+
+@media print {
+  html, body { background:white; width:297mm; }
+  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+<div class="print-header">
+  <div>
+    <div class="ph-logo">Gdwa <span style="font-size:13px;color:#a09890;font-family:Tajawal,sans-serif;font-weight:300">جدوى</span></div>
+    <div class="ph-sub">الجدول الأسبوعي — طريقة ستيفن كوفي</div>
+  </div>
+  <div class="ph-week">الأسبوع: ${weekStr}</div>
+</div>
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#e05555"></div>Q1 عاجل + مهم</div>
+  <div class="leg"><div class="leg-dot" style="background:#4e9eff"></div>Q2 ★ مهم + غير عاجل</div>
+  <div class="leg"><div class="leg-dot" style="background:#f5a623"></div>Q3 عاجل + غير مهم</div>
+  <div class="leg"><div class="leg-dot" style="background:#9ca3af"></div>Q4 غير مهم</div>
+</div>
+<table class="priority-table">
+  <tr>
+    <td class="ps-label">أولويات Q2</td>
+    ${weekDates.map(({dayOfWeek,date},i) => `<td class="ps-day">
+      <span class="ps-day-name">${DAYS_AR[dayOfWeek]}</span>
+      <span class="ps-day-date">${formatDateAr(date)}</span>
+      ${priorityRows[i]}
+    </td>`).join('')}
+  </tr>
+</table>
+<table class="grid-table">
+  <colgroup>
+    <col class="time-c">
+    <col class="day-c"><col class="day-c"><col class="day-c">
+    <col class="day-c"><col class="day-c"><col class="day-c"><col class="day-c">
+  </colgroup>
+  <thead><tr>
+    <th class="time-col">وقت</th>
+    ${weekDates.map(({dayOfWeek,date}) => `<th class="col-head${isToday(date)?' today-col':''}">
+      <span class="ch-day">${DAYS_AR[dayOfWeek]}</span>
+      <span class="ch-en">${DAYS_EN[dayOfWeek]}</span>
+      <span class="ch-date">${formatDateAr(date)}</span>
+    </th>`).join('')}
+  </tr></thead>
+  <tbody>${timeRows}</tbody>
+</table>
+<div class="print-footer">
+  <span>طُبع من Gdwa — جدوى</span>
+  <span>${printDate}</span>
+</div>
+</body>
+</html>`;
+
+  // Use Blob + iframe — no window.open needed
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+
+  const iframe = document.createElement('iframe');
+  iframe.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;';
+  document.body.appendChild(iframe);
+
+  iframe.onload = () => {
+    try {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    } catch(e) {
+      // Fallback: open in new tab
+      window.open(url, '_blank');
+    }
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      URL.revokeObjectURL(url);
+    }, 3000);
+  };
+
+  iframe.src = url;
+}
+
+function exportExcel() {
+  // Simple CSV export
+  const weekDates = getWeekDates();
+  let csv = 'الوقت,' + weekDates.map(({dayOfWeek}) => DAYS_AR[dayOfWeek]).join(',') + '\n';
+  
+  for(let h=6; h<=22; h++) {
+    for(let m of [0,30]) {
+      let row = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')},`;
+      row += weekDates.map(({dayOfWeek}) => {
+        const t = getTasksForCell(dayOfWeek, h, new Date());
+        return t.map(t => t.name).join(' | ');
+      }).join(',');
+      csv += row + '\n';
+    }
+  }
+
+  const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gdwa-weekly.csv';
+  a.click();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PWA
+// ═══════════════════════════════════════════════════════════════
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBtn').style.display = 'block';
+});
+
+function installApp() {
+  if(deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+  } else {
+    alert('لتثبيت التطبيق، افتح القائمة في المتصفح واختر "إضافة إلى الشاشة الرئيسية"');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RECURRENCE CHIPS
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('.day-chip[data-day]').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('selected'));
+});
+
+// ═══════════════════════════════════════════════════════════════
+// SERVICE WORKER (PWA)
+// ═══════════════════════════════════════════════════════════════
+if('serviceWorker' in navigator) {
+  // Register sw.js from same directory
+  navigator.serviceWorker.register('./sw.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(() => {
+      // Fallback: inline blob SW
+      const swCode = `
+        const CACHE='gdwa-v2';
+        self.addEventListener('install', e => {
+          e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])));
+        });
+        self.addEventListener('fetch', e => {
+          e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+        });
+      `;
+      const blob = new Blob([swCode], {type:'application/javascript'});
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
+    });
+}
+
+// Handle PWA shortcuts
+if(location.hash === '#add') setTimeout(() => openAddTask(), 500);
+if(location.hash === '#weekly') setTimeout(() => showPage('weekly'), 500);
+
+
+// ═══════════════════════════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════════════════════════
+let notifSettings = JSON.parse(localStorage.getItem('gdwa-notif') || JSON.stringify({
+  enabled: false,
+  notif15: true,
+  notif60: true,
+  notifStart: true,
+  notifMorning: false,
+  notifEnd: false
+}));
+let notifTimers = [];
+
+function saveNotifSettings() {
+  localStorage.setItem('gdwa-notif', JSON.stringify(notifSettings));
+}
+
+function applyNotifUI() {
+  const en = notifSettings.enabled;
+  document.getElementById('globalNotifToggle').classList.toggle('on', en);
+  document.getElementById('globalNotifOptions').style.display = en ? 'block' : 'none';
+  ['15','60','Start','Morning','End'].forEach(k => {
+    const el = document.getElementById(`notif${k}Toggle`);
+    if(el) el.classList.toggle('on', !!notifSettings[`notif${k}`]);
+  });
+}
+
+async function toggleGlobalNotif() {
+  if(!notifSettings.enabled) {
+    // Request permission
+    if(Notification.permission === 'default') {
+      const perm = await Notification.requestPermission();
+      if(perm !== 'granted') {
+        showToast('🔕', 'الإشعارات محجوبة', 'يرجى السماح بالإشعارات من إعدادات المتصفح');
+        return;
+      }
+    }
+    if(Notification.permission === 'denied') {
+      showToast('🔕', 'الإشعارات محجوبة', 'افتح إعدادات المتصفح وأعط الإذن يدوياً');
+      return;
+    }
+    notifSettings.enabled = true;
+    showToast('🔔', 'الإشعارات مفعّلة', 'ستصلك تنبيهات قبل مواعيد مهامك');
+    scheduleAllNotifications();
+  } else {
+    notifSettings.enabled = false;
+    clearAllNotifTimers();
+    showToast('🔕', 'الإشعارات موقوفة', '');
+  }
+  saveNotifSettings();
+  applyNotifUI();
+}
+
+function toggleNotifSetting(key) {
+  notifSettings[key] = !notifSettings[key];
+  saveNotifSettings();
+  applyNotifUI();
+  if(notifSettings.enabled) scheduleAllNotifications();
+}
+
+function toggleTaskNotif(btn) {
+  // Single select among task notif chips
+  document.querySelectorAll('.notif-chip[data-notif]').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function getSelectedTaskNotif() {
+  const sel = document.querySelector('.notif-chip[data-notif].selected');
+  return sel ? sel.dataset.notif : 'default';
+}
+
+function setTaskNotifChips(val) {
+  document.querySelectorAll('.notif-chip[data-notif]').forEach(c => {
+    c.classList.toggle('selected', c.dataset.notif === (val || 'default'));
+  });
+}
+
+// ── Schedule all task notifications ──
+function scheduleAllNotifications() {
+  clearAllNotifTimers();
+  if(!notifSettings.enabled || Notification.permission !== 'granted') return;
+
+  const now = new Date();
+
+  tasks.forEach(task => {
+    const taskNotif = task.notifType || 'default';
+    if(taskNotif === 'none') return;
+
+    // Build target datetime from task
+    const tYear = task.taskYear || now.getFullYear();
+    const tMonth = (task.taskMonth || now.getMonth() + 1) - 1;
+    const tDay = task.dayNum || now.getDate();
+    const tHour = task.startSlot || 8;
+    const taskStart = new Date(tYear, tMonth, tDay, tHour, 0, 0);
+    const taskEnd = new Date(tYear, tMonth, tDay, (task.endSlot || tHour + 1), 0, 0);
+
+    const scheduleNotif = (triggerTime, icon, title, body) => {
+      const delay = triggerTime - now;
+      if(delay < 0) return; // past
+      if(delay > 7 * 24 * 60 * 60 * 1000) return; // more than 7 days ahead
+      const timer = setTimeout(() => {
+        showNativeNotif(icon, title, body);
+        showToast(icon, title, body);
+      }, delay);
+      notifTimers.push(timer);
+    };
+
+    // Determine which reminders to fire
+    const use15   = taskNotif === '15min'  || (taskNotif === 'default' && notifSettings.notif15);
+    const use30   = taskNotif === '30min';
+    const use60   = taskNotif === '1hour'  || (taskNotif === 'default' && notifSettings.notif60);
+    const useStart= taskNotif === 'atstart'|| (taskNotif === 'default' && notifSettings.notifStart);
+    const useEnd  = taskNotif === 'atend'  || (taskNotif === 'default' && notifSettings.notifEnd);
+
+    if(use15)    scheduleNotif(new Date(taskStart - 15*60000), '⏰', `قريباً: ${task.name}`, 'يبدأ بعد 15 دقيقة');
+    if(use30)    scheduleNotif(new Date(taskStart - 30*60000), '⏰', `قريباً: ${task.name}`, 'يبدأ بعد 30 دقيقة');
+    if(use60)    scheduleNotif(new Date(taskStart - 60*60000), '🔔', `تذكير: ${task.name}`, 'يبدأ بعد ساعة');
+    if(useStart) scheduleNotif(taskStart, '🚀', `ابدأ الآن: ${task.name}`, task.category || '');
+    if(useEnd)   scheduleNotif(taskEnd,   '✅', `انتهت: ${task.name}`, 'هل أنجزتها؟');
+  });
+
+  // Morning briefing — 7:00 AM today or tomorrow
+  if(notifSettings.notifMorning) {
+    const todayQ2 = tasks.filter(t => t.quad === 'q2').length;
+    let morning = new Date(); morning.setHours(7,0,0,0);
+    if(morning < now) morning.setDate(morning.getDate() + 1);
+    const timer = setTimeout(() => {
+      showNativeNotif('🌅', 'صباح الإنتاجية — Gdwa', `لديك ${todayQ2} أولوية Q2 اليوم`);
+      showToast('🌅', 'صباح الإنتاجية', `لديك ${todayQ2} أولوية Q2 اليوم`);
+    }, morning - now);
+    notifTimers.push(timer);
+  }
+}
+
+function clearAllNotifTimers() {
+  notifTimers.forEach(clearTimeout);
+  notifTimers = [];
+}
+
+function showNativeNotif(icon, title, body) {
+  if(Notification.permission !== 'granted') return;
+  try {
+    new Notification(`${icon} ${title}`, { body, icon: '' });
+  } catch(e) {}
+}
+
+let toastTimer;
+function showToast(icon, title, sub) {
+  const el = document.getElementById('toastNotif');
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastSub').textContent = sub;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+function showAbout() {
+  document.getElementById('aboutOverlay').classList.add('open');
+}
+
+// BOOT
+init();
+applyNotifUI();
+if(notifSettings.enabled && Notification.permission === 'granted') {
+  scheduleAllNotifications();
+}
+</script>
+</body>
+</html>
